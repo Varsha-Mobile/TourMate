@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BerandaScreen(modifier: Modifier = Modifier) {
+
     
     Scaffold(
         topBar = {
@@ -37,7 +38,7 @@ fun BerandaScreen(modifier: Modifier = Modifier) {
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Jadwal",
+                            text = "Beranda",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFF3D4949)
@@ -58,6 +59,7 @@ fun BerandaScreen(modifier: Modifier = Modifier) {
         }
     }
     
+
 }
 
 @Preview
