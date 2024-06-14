@@ -31,13 +31,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.varsha.tourmate.R
+import com.varsha.tourmate.model.navigation.Screen
 import com.varsha.tourmate.view.ui.screen.jadwal.component.FloatingButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun JadwalScreen(
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -68,7 +71,7 @@ fun JadwalScreen(
             FloatingButton(
                 text = "Jadwal",
                 icon = Icons.Default.Edit,
-                onClick = {},
+                onClick = { navController.navigate(Screen.TambahJadwal.route)},
                 navController = rememberNavController(),
             )
         },
@@ -96,5 +99,5 @@ fun JadwalScreen(
 @Preview
 @Composable
 private fun JadwalScreenPreview() {
-    JadwalScreen()
+    JadwalScreen(navController = rememberNavController())
 }

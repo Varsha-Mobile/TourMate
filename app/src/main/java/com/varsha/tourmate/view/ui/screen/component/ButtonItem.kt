@@ -58,7 +58,7 @@ private fun BackIconItemPrefiew() {
 
 @Composable
 fun ButtonItem1(
-    navController: NavController,
+    //navController: NavController,
     text: String,
     onClick: () -> Unit,
 ) {
@@ -95,14 +95,13 @@ fun ButtonItemScreen() {
     // val navController = rememberNavController()
     ButtonItem1(
         text = "Cancel",
-        onClick = {},
-        navController = rememberNavController()
+        onClick = {}
     )
 }
 
 @Composable
 fun ButtonItem2(
-    navController: NavController,
+    //navController: NavController,
     text: String,
     onClick: () -> Unit,
 ) {
@@ -140,6 +139,5 @@ fun ButtonItem2Screen() {
     ButtonItem2(
         text = "Save",
         onClick = {},
-        navController = rememberNavController()
     )
 }

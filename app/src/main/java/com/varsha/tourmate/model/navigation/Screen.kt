@@ -11,6 +11,9 @@ sealed class Screen ( val route: String) {
 
     // AUTENTIKASI
 
+    //TambahJadwal
+    data object TambahJadwal : Screen("tambah_jadwal")
+
     //login
     data object Login : Screen("login")
 

@@ -7,7 +7,7 @@
       </SelectionState>
       <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-06-13T01:50:49.197982400Z">
+        <DropdownSelection timestamp="2024-06-14T08:41:04.899993600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\LENOVO\.android\avd\Pixel_8_Pro_API_30.avd" />
@@ -16,6 +16,18 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
+      
+      <SelectionState runConfigName="FormJadwalScreen">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="ButtonItem">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="JadwalScreenPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="TambahJadwalScreenPreview">
+
       <SelectionState runConfigName="PengaturanItemPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
