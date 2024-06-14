@@ -76,6 +76,8 @@ dependencies {
     implementation (libs.androidx.material.icons.extended)
 
     // GOOGLE MAPS
-    implementation("com.google.maps.android:maps-compose:4.4.1")
+    implementation(libs.maps.compose)
+    implementation (libs.play.services.maps)
+    implementation(libs.accompanist.permissions)
 
 }
