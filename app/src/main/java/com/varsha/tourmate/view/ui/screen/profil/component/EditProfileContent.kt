@@ -84,13 +84,11 @@ fun EditProfileContent(
             ButtonItem1(
                 text = "Cancel",
                 onClick = {},
-                navController = rememberNavController(),
             )
             Spacer(modifier = Modifier.width(8.dp))
             ButtonItem2(
                 text = "Save",
                 onClick = {},
-                navController = rememberNavController(),
             )
         }
     }

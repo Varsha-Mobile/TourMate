@@ -3,6 +3,7 @@ package com.infinitelearning.infiniteapp.presentation.screen.login
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -72,55 +73,61 @@ fun LoginScreen(
         mutableStateOf("")
     }
 
-    LoginContent(
-        name = name,
-        password = password,
-        onNameChange = { name = it },
-        onPasswordChange = { password = it },
-        onLoginClick = {
-            if (name.isBlank() || password.isBlank()){
-                Toast.makeText(context, "Nama dan Password Wajib Diisi", Toast.LENGTH_SHORT).show()
-            } else {
-                sharedPreferencesManager.name = name
-                sharedPreferencesManager.password = password
-                coroutineScope.launch {
-                    dataStore.saveStatus(true)
-                }
-                navController.navigate(Screen.Beranda.route){
-                    popUpTo(Screen.Login.route){
-                        inclusive = true
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        LoginContent(
+            name = name,
+            password = password,
+            onNameChange = { name = it },
+            onPasswordChange = { password = it },
+            onLoginClick = {
+                if (name.isBlank() || password.isBlank()){
+                    Toast.makeText(context, "Nama dan Password Wajib Diisi", Toast.LENGTH_SHORT).show()
+                } else {
+                    sharedPreferencesManager.name = name
+                    sharedPreferencesManager.password = password
+                    coroutineScope.launch {
+                        dataStore.saveStatus(true)
                     }
-                }
+                    navController.navigate(Screen.Beranda.route){
+                        popUpTo(Screen.Login.route){
+                            inclusive = true
+                        }
+                    }
 //                navController.navigate(Screen.Home.route) {
 //                    popUpTo(Screen.Login.route) {
 //                        inclusive = true
 //                    }
 //                }
-            }
-        },
-        moveToForgot = {
-            Toast.makeText(
-                context,
-                "Silahkan di kembangkan sendiri",
-                Toast.LENGTH_SHORT
-            ).show()
-        },
-        onGoogleClick = {
-            Toast.makeText(
-                context,
-                "Nanti akan dibahas saat Materi Firebase",
-                Toast.LENGTH_SHORT
-            ).show()
-        },
-        onSignUpClick = {
-            Toast.makeText(
-                context,
-                "Silahkan di kembangkan sendiri",
-                Toast.LENGTH_SHORT
-            ).show()
-        },
-        modifier = modifier
-    )
+                }
+            },
+            moveToForgot = {
+                Toast.makeText(
+                    context,
+                    "Silahkan di kembangkan sendiri",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            onGoogleClick = {
+                Toast.makeText(
+                    context,
+                    "Nanti akan dibahas saat Materi Firebase",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            onSignUpClick = {
+                Toast.makeText(
+                    context,
+                    "Silahkan di kembangkan sendiri",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
+            modifier = modifier
+        )
+    }
 }
 
 @Composable
@@ -186,7 +193,7 @@ fun LoginContent(
 //                    style = MaterialTheme.typography.bodyLarge
 //                )
             }
-            ButtonItem2(onClick = onLoginClick, navController = rememberNavController(), text = "Login")
+            ButtonItem2(onClick = onLoginClick, text = "Login")
 //            Button(
 //                onClick = onLoginClick,
 //                shape = MaterialTheme.shapes.large,
@@ -250,13 +257,13 @@ fun LoginContent(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(128.dp))
+//            Spacer(modifier = Modifier.height(128.dp))
         }
     }
 }
 
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun LoginScreenPrev() {
     LoginScreen(navController = rememberNavController())
