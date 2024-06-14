@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.play.services.location)
+    implementation(libs.androidx.datastore.core.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -81,4 +82,9 @@ dependencies {
     implementation (libs.play.services.maps)
     implementation(libs.accompanist.permissions)
 
+    // DataStore Preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0") // Sesuaikan versinya dengan yang terbaru
+    
+    // GOOGLE MAPS
+    implementation("com.google.maps.android:maps-compose:4.4.1")
 }

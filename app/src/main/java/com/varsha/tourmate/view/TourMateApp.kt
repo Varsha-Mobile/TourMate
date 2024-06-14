@@ -16,6 +16,7 @@ import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,10 +27,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.infinitelearning.infiniteapp.presentation.screen.login.LoginScreen
 import com.varsha.tourmate.model.navigation.NavigationItem
 import com.varsha.tourmate.model.navigation.Screen
 import com.varsha.tourmate.view.ui.screen.beranda.BerandaScreen
 import com.varsha.tourmate.view.ui.screen.jadwal.JadwalScreen
+import com.varsha.tourmate.view.ui.screen.notifikasi.NotifikasiScreen
+import com.varsha.tourmate.view.ui.screen.pengaturan.PengaturanScreen
+import com.varsha.tourmate.view.ui.screen.jadwal.TambahJadwalScreen
+import com.varsha.tourmate.view.ui.screen.profil.EditProfileScreen
 import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -37,32 +43,60 @@ import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 fun TourMateApp(
     navController: NavHostController = rememberNavController()
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
     Scaffold(
         bottomBar = {
             BottomAppBar(
                 containerColor = Color(0xFF9AA27D)
             ) {
-                BottomBar(navController)
+                if (currentRoute != null
+                    && !currentRoute.contains(Screen.Login.route)
+                ) {
+                    BottomBar(navController = navController)
+                }
             }
         }
 
     ) { contentPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Beranda.route,
+            startDestination = Screen.Login .route,
             modifier = Modifier
                 .padding(contentPadding)
         ) {
+            
+            composable(Screen.Login.route){
+                LoginScreen(navController = navController)
+            }
+            
             composable(Screen.Beranda.route) {
                 BerandaScreen(navController)
             }
 
             composable(Screen.Jadwal.route) {
-                JadwalScreen()
+                JadwalScreen(navController = navController)
             }
 
             composable(Screen.Profil.route) {
-                ProfilScreen()
+                ProfilScreen( navController = navController)
+            }
+            
+            composable(Screen.EditProfil.route){
+                EditProfileScreen(navController = navController)
+            }
+
+            composable(Screen.Notifikasi.route){
+                NotifikasiScreen(navController = navController)
+            }
+
+            composable(Screen.Pengaturan.route){
+                PengaturanScreen(navController = navController)
+
+            composable(Screen.TambahJadwal.route){
+                TambahJadwalScreen(navController = navController)
+
             }
 
         }
