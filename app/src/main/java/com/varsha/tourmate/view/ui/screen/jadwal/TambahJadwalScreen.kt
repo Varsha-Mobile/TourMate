@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -27,17 +26,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.varsha.tourmate.R
+import com.varsha.tourmate.view.ui.screen.component.BackIconItem
 import com.varsha.tourmate.view.ui.screen.jadwal.component.FloatingButton
+import com.varsha.tourmate.view.ui.screen.jadwal.component.FormJadwal
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun JadwalScreen(
+fun TambahJadwalScreen(
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -49,13 +51,17 @@ fun JadwalScreen(
                 title = {
                     Box(
                         modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Jadwal",
+                            text = "Tambah Jadwal",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
+                            modifier = Modifier.align(Alignment.Center),
                             color = Color(0xFF3D4949)
+                        )
+                        BackIconItem(
+                            onBackClicked = { navController.navigateUp() },
+                            modifier = Modifier.align(Alignment.CenterStart)
                         )
                     }
                 },
@@ -64,37 +70,21 @@ fun JadwalScreen(
                 )
             )
         },
-        floatingActionButton = {
-            FloatingButton(
-                text = "Jadwal",
-                icon = Icons.Default.Edit,
-                onClick = {},
-                navController = rememberNavController(),
-            )
-        },
     ) {contentPadding ->
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                //.fillMaxSize()
                 .padding(contentPadding),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.screenjadwal), // Make sure to add your image in drawable
-                contentDescription = null,
-                modifier = Modifier.size(250.dp)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            androidx.compose.material.Text(text = "Your calendar is empty", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-            androidx.compose.material.Text(text = "You don't have any schedules today", fontSize = 14.sp)
-            Spacer(modifier = Modifier.height(16.dp))
+            FormJadwal()
         }
     }
 }
 
 @Preview
 @Composable
-private fun JadwalScreenPreview() {
-    JadwalScreen()
+private fun JTambahJadwalScreenPreview() {
+    TambahJadwalScreen(navController = rememberNavController())
 }
