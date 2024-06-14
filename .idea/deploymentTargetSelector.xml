@@ -5,8 +5,12 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MainActivity">
+      <SelectionState runConfigName="PilihLokasiPreview">
         <option name="selectionMode" value="DROPDOWN" />
+
+      </SelectionState>
+      <SelectionState runConfigName="PilihJarakLokasiScreenPreview">
+
         <DropdownSelection timestamp="2024-06-14T08:41:04.899993600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
@@ -29,6 +33,7 @@
       <SelectionState runConfigName="TambahJadwalScreenPreview">
 
       <SelectionState runConfigName="PengaturanItemPreview">
+
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

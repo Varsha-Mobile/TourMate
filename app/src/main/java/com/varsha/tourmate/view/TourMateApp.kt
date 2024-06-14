@@ -1,5 +1,7 @@
 package com.varsha.tourmate.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccessTime
@@ -10,12 +12,14 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -34,6 +38,7 @@ import com.varsha.tourmate.view.ui.screen.jadwal.TambahJadwalScreen
 import com.varsha.tourmate.view.ui.screen.profil.EditProfileScreen
 import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TourMateApp(
     navController: NavHostController = rememberNavController()
@@ -43,13 +48,14 @@ fun TourMateApp(
 
     Scaffold(
         bottomBar = {
-            BottomAppBar {
+            BottomAppBar(
+                containerColor = Color(0xFF9AA27D)
+            ) {
                 if (currentRoute != null
                     && !currentRoute.contains(Screen.Login.route)
                 ) {
                     BottomBar(navController = navController)
                 }
-                //BottomBar(navController)
             }
         }
 
@@ -66,7 +72,7 @@ fun TourMateApp(
             }
             
             composable(Screen.Beranda.route) {
-                BerandaScreen()
+                BerandaScreen(navController)
             }
 
             composable(Screen.Jadwal.route) {
@@ -100,9 +106,11 @@ fun TourMateApp(
 
 @Composable
 fun BottomBar(
-    navController : NavHostController
+    navController: NavHostController
 ) {
     NavigationBar(
+        containerColor = Color(0xFF9AA27D),
+        contentColor = Color(0xFF9AA27D),
         modifier = Modifier
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -148,13 +156,23 @@ fun BottomBar(
                     Text(
                         text = item.title
                     )
-                }
+                },
+                colors = NavigationBarItemColors(
+                    selectedIconColor = Color.Black,
+                    selectedIndicatorColor = Color.White,
+                    selectedTextColor = Color.White,
+                    unselectedIconColor = Color.Black,
+                    unselectedTextColor = Color.Black,
+                    disabledIconColor = Color.Transparent,
+                    disabledTextColor = Color.Transparent
+                )
             )
         }
 
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun TourMateAppPreview() {
