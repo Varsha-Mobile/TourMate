@@ -76,9 +76,11 @@ dependencies {
     implementation(libs.androidx.material)
     implementation (libs.androidx.material.icons.extended)
 
-    dependencies {
         // DataStore Preferences
         implementation("androidx.datastore:datastore-preferences:1.0.0") // Sesuaikan versinya dengan yang terbaru
-    }
+    
+   // GOOGLE MAPS
+    implementation("com.google.maps.android:maps-compose:4.4.1")
+
 
 }
