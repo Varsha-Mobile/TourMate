@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.datastore.core.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,5 +75,10 @@ dependencies {
     // EXTENTED ICONS
     implementation(libs.androidx.material)
     implementation (libs.androidx.material.icons.extended)
+
+    dependencies {
+        // DataStore Preferences
+        implementation("androidx.datastore:datastore-preferences:1.0.0") // Sesuaikan versinya dengan yang terbaru
+    }
 
 }

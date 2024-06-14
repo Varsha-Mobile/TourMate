@@ -8,9 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BerandaScreen(modifier: Modifier = Modifier) {
-    
     Text(text = "INI BERANDA")
-    
 }
 
 @Preview
