@@ -28,6 +28,8 @@ import com.varsha.tourmate.model.navigation.NavigationItem
 import com.varsha.tourmate.model.navigation.Screen
 import com.varsha.tourmate.view.ui.screen.beranda.BerandaScreen
 import com.varsha.tourmate.view.ui.screen.jadwal.JadwalScreen
+import com.varsha.tourmate.view.ui.screen.notifikasi.NotifikasiScreen
+import com.varsha.tourmate.view.ui.screen.pengaturan.PengaturanScreen
 import com.varsha.tourmate.view.ui.screen.profil.EditProfileScreen
 import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 
@@ -35,10 +37,18 @@ import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 fun TourMateApp(
     navController: NavHostController = rememberNavController()
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
     Scaffold(
         bottomBar = {
             BottomAppBar {
-                BottomBar(navController)
+                if (currentRoute != null
+                    && !currentRoute.contains(Screen.Login.route)
+                ) {
+                    BottomBar(navController = navController)
+                }
+                //BottomBar(navController)
             }
         }
 
@@ -68,6 +78,14 @@ fun TourMateApp(
             
             composable(Screen.EditProfil.route){
                 EditProfileScreen(navController = navController)
+            }
+
+            composable(Screen.Notifikasi.route){
+                NotifikasiScreen(navController = navController)
+            }
+
+            composable(Screen.Pengaturan.route){
+                PengaturanScreen(navController = navController)
             }
 
         }
