@@ -2,7 +2,11 @@ package com.varsha.tourmate.view
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccessTime
 import androidx.compose.material.icons.outlined.AccountCircle
@@ -21,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -54,7 +59,11 @@ fun TourMateApp(
                 if (currentRoute != null
                     && !currentRoute.contains(Screen.Login.route)
                 ) {
-                    BottomBar(navController = navController)
+
+                    BottomBar(
+                        navController = navController,
+                        modifier = Modifier
+                    )
                 }
             }
         }
@@ -62,15 +71,15 @@ fun TourMateApp(
     ) { contentPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Login .route,
+            startDestination = Screen.Login.route,
             modifier = Modifier
                 .padding(contentPadding)
         ) {
-            
-            composable(Screen.Login.route){
+
+            composable(Screen.Login.route) {
                 LoginScreen(navController = navController)
             }
-            
+
             composable(Screen.Beranda.route) {
                 BerandaScreen(navController)
             }
@@ -80,38 +89,36 @@ fun TourMateApp(
             }
 
             composable(Screen.Profil.route) {
-                ProfilScreen( navController = navController)
+                ProfilScreen(navController = navController)
             }
-            
-            composable(Screen.EditProfil.route){
+
+            composable(Screen.EditProfil.route) {
                 EditProfileScreen(navController = navController)
             }
 
-            composable(Screen.Notifikasi.route){
+            composable(Screen.Notifikasi.route) {
                 NotifikasiScreen(navController = navController)
             }
 
-            composable(Screen.Pengaturan.route){
+            composable(Screen.Pengaturan.route) {
                 PengaturanScreen(navController = navController)
+            }
 
-            composable(Screen.TambahJadwal.route){
+            composable(Screen.TambahJadwal.route) {
                 TambahJadwalScreen(navController = navController)
-
             }
 
         }
-
     }
 }
 
 @Composable
 fun BottomBar(
-    navController: NavHostController
+    navController: NavHostController,
+    modifier: Modifier
 ) {
     NavigationBar(
         containerColor = Color(0xFF9AA27D),
-        contentColor = Color(0xFF9AA27D),
-        modifier = Modifier
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -134,7 +141,7 @@ fun BottomBar(
             )
         )
 
-        navigationItems.map { item ->
+        navigationItems.forEach { item ->
             NavigationBarItem(
                 selected = currentRoute == item.screen.route,
                 onClick = {
@@ -153,9 +160,7 @@ fun BottomBar(
                     )
                 },
                 label = {
-                    Text(
-                        text = item.title
-                    )
+                    Text(text = item.title)
                 },
                 colors = NavigationBarItemColors(
                     selectedIconColor = Color.Black,
@@ -168,9 +173,9 @@ fun BottomBar(
                 )
             )
         }
-
     }
 }
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
