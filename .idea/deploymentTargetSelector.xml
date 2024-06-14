@@ -16,6 +16,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
+      
       <SelectionState runConfigName="FormJadwalScreen">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -26,6 +27,8 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="TambahJadwalScreenPreview">
+
+      <SelectionState runConfigName="PengaturanItemPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
