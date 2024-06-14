@@ -19,4 +19,10 @@ sealed class Screen ( val route: String) {
 
     //edit profil
     data object EditProfil : Screen("edit_profil")
+
+    //notifikasi
+    data object Notifikasi : Screen("notifikasi")
+
+    //settingss
+    data object Pengaturan : Screen("screen")
 }

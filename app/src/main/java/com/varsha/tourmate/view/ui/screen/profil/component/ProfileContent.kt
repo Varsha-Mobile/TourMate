@@ -28,12 +28,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.varsha.tourmate.model.navigation.Screen
 
 
 @Composable
 fun ProfileContent(
-    modifier: Modifier = Modifier,
     navController: NavController,
+    modifier: Modifier = Modifier,
     //onItemClicked: (Int) -> Unit
 ) {
 
@@ -49,7 +50,7 @@ fun ProfileContent(
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-                       // navController.navigate(Screen.Notification.route)
+                        navController.navigate(Screen.Notifikasi.route)
                     },
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -79,7 +80,7 @@ fun ProfileContent(
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-                       // navController.navigate(Screen.Notification.route)
+                        navController.navigate(Screen.Pengaturan.route)
                     },
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -103,36 +104,6 @@ fun ProfileContent(
                     tint = Color(0xFF495555)
                 )
             }
-
-            Row(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .fillMaxWidth()
-                    .clickable {
-                       // navController.navigate(Screen.Login.route)
-                               },
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.Logout,
-                        contentDescription = null,
-                        tint = Color(0xFF495555)
-                    )
-                    Spacer(modifier = Modifier.padding(8.dp))
-                    Text(
-                        text = "Logout",
-                        modifier = Modifier.width(180.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.padding(16.dp))
-                Icon(
-                    imageVector = Icons.Default.ArrowForwardIos,
-                    contentDescription = null,
-                    tint = Color(0xFF495555)
-                )
-            }
         }
 
 }
@@ -140,6 +111,5 @@ fun ProfileContent(
 @Preview
 @Composable
 private fun ProfilContentPreview() {
-    val navController = rememberNavController()
     ProfileContent(navController = rememberNavController())
 }

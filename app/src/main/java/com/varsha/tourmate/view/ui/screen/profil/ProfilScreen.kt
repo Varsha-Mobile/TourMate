@@ -125,7 +125,7 @@ fun ProfilScreenContent(
 //                    modifier = Modifier.padding(bottom = 40.dp)
 //                )
                 UserProfileContent(name = name)
-                ProfileContent(navController = rememberNavController())
+                ProfileContent(navController = navController)
             }
         }
     }
