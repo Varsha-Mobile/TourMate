@@ -30,6 +30,7 @@ import com.varsha.tourmate.view.ui.screen.beranda.BerandaScreen
 import com.varsha.tourmate.view.ui.screen.jadwal.JadwalScreen
 import com.varsha.tourmate.view.ui.screen.notifikasi.NotifikasiScreen
 import com.varsha.tourmate.view.ui.screen.pengaturan.PengaturanScreen
+import com.varsha.tourmate.view.ui.screen.jadwal.TambahJadwalScreen
 import com.varsha.tourmate.view.ui.screen.profil.EditProfileScreen
 import com.varsha.tourmate.view.ui.screen.profil.ProfilScreen
 
@@ -69,7 +70,7 @@ fun TourMateApp(
             }
 
             composable(Screen.Jadwal.route) {
-                JadwalScreen()
+                JadwalScreen(navController = navController)
             }
 
             composable(Screen.Profil.route) {
@@ -86,6 +87,10 @@ fun TourMateApp(
 
             composable(Screen.Pengaturan.route){
                 PengaturanScreen(navController = navController)
+
+            composable(Screen.TambahJadwal.route){
+                TambahJadwalScreen(navController = navController)
+
             }
 
         }

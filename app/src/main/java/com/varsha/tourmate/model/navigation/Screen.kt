@@ -10,9 +10,12 @@ sealed class Screen ( val route: String) {
     // SUB MENU
 
     // AUTENTIKASI
+
+    //TambahJadwal
+    data object TambahJadwal : Screen("tambah_jadwal")
+
     //login
     data object Login : Screen("login")
-
 
     //edit profil
     data object EditProfil : Screen("edit_profil")
