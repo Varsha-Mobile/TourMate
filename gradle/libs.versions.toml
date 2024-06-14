@@ -18,6 +18,7 @@ navigationCompose = "2.7.7"
 material3Android = "1.2.1"
 playServicesMaps = "18.2.0"
 ui = "1.6.8"
+playServicesLocation = "21.3.0"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -45,6 +46,7 @@ maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = 
 maps-compose-v220 = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
