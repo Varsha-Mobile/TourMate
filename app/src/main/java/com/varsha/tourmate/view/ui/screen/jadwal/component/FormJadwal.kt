@@ -1,5 +1,6 @@
 package com.varsha.tourmate.view.ui.screen.jadwal.component
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,12 +38,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.varsha.tourmate.view.ui.screen.component.ButtonItem1
 import com.varsha.tourmate.view.ui.screen.component.ButtonItem2
 import com.varsha.tourmate.view.ui.screen.component.ScheduleTimeTextField
 import com.varsha.tourmate.view.ui.screen.component.TextFieldItem
 import com.varsha.tourmate.view.ui.screen.component.TimePickerDialog
+import com.varsha.tourmate.viewmodel.cancelNotification
+import com.varsha.tourmate.viewmodel.scheduleNotification
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -50,6 +54,7 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormJadwal(
+    //navController: NavController,
     modifier: Modifier = Modifier
 ) {
 
@@ -58,15 +63,11 @@ fun FormJadwal(
     val date = remember { Calendar.getInstance().timeInMillis }
     val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
-    var scheduleText by remember { mutableStateOf("") }
-    var scheduleDateStart by remember { mutableStateOf("") }
-    var scheduleDateEnd by remember { mutableStateOf("") }
+    var scheduleDate by remember { mutableStateOf("") }
     var scheduleTime by rememberSaveable { mutableStateOf("") }
 
     val datePickerState = rememberDatePickerState(initialSelectedDateMillis = date)
-    var showDatePickerStart by remember { mutableStateOf(false) }
-
-    var showDatePickerEnd by remember { mutableStateOf(false) }
+    var showDatePicker by remember { mutableStateOf(false) }
 
     val timePickerState = rememberTimePickerState()
     var showTimePicker by remember { mutableStateOf(false) }
@@ -99,49 +100,24 @@ fun FormJadwal(
         }
     }
 
-    if (showDatePickerStart) {
+    if (showDatePicker) {
         DatePickerDialog(
-            onDismissRequest = { showDatePickerStart = false },
+            onDismissRequest = { showDatePicker = false },
             confirmButton = {
                 TextButton(
                     onClick = {
                         val selectedDate = Calendar.getInstance().apply {
                             timeInMillis = datePickerState.selectedDateMillis!!
                         }
-                        scheduleDateStart = formatter.format(selectedDate.time)
-                        showDatePickerStart = false
+                        scheduleDate = formatter.format(selectedDate.time)
+                        showDatePicker = false
                     }
                 ) {
                     Text("OK")
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showDatePickerStart = false }
-                ) { Text("Cancel") }
-            }
-        ) {
-            DatePicker(state = datePickerState)
-        }
-    }
-
-    if (showDatePickerEnd) {
-        DatePickerDialog(
-            onDismissRequest = { showDatePickerEnd = false },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        val selectedDate = Calendar.getInstance().apply {
-                            timeInMillis = datePickerState.selectedDateMillis!!
-                        }
-                        scheduleDateStart = formatter.format(selectedDate.time)
-                        showDatePickerEnd = false
-                    }
-                ) {
-                    Text("OK")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDatePickerEnd = false }
+                TextButton(onClick = { showDatePicker = false }
                 ) { Text("Cancel") }
             }
         ) {
@@ -161,22 +137,12 @@ fun FormJadwal(
         )
 
         ScheduleTimeTextField(
-            value = scheduleDateStart,
-            onValueChange = { scheduleDateStart = it },
+            value = scheduleDate,
+            onValueChange = { scheduleDate = it },
             label = "Start Date",
             icon = Icons.Default.DateRange,
             onIconClick = {
-                showDatePickerStart = true
-            }
-        )
-
-        ScheduleTimeTextField(
-            value = scheduleDateEnd,
-            onValueChange = { scheduleDateEnd = it },
-            label = "End Date",
-            icon = Icons.Default.DateRange,
-            onIconClick = {
-                showDatePickerEnd = true
+                showDatePicker = true
             }
         )
 
@@ -189,6 +155,7 @@ fun FormJadwal(
                 showTimePicker = true
             }
         )
+
         Spacer(modifier = Modifier.padding(8.dp))
 
         Row(
@@ -198,14 +165,34 @@ fun FormJadwal(
         ) {
             ButtonItem1(
                 text = "Cancel",
-                onClick = {},
-                navController = rememberNavController(),
+                onClick = {
+                    cancelNotification(context)
+                },
             )
+
             Spacer(modifier = Modifier.width(8.dp))
             ButtonItem2(
                 text = "Save",
-                onClick = {},
-                navController = rememberNavController(),
+                onClick = {
+                    if (jadwaltitle.isBlank() || scheduleDate.isBlank() || scheduleTime.isBlank()) {
+                        Toast.makeText(
+                            context,
+                            "Semua field wajib diisi!",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    } else {
+                        scheduleNotification(
+                            context,
+                            timePickerState,
+                            datePickerState,
+                            jadwaltitle
+                        )
+                        jadwaltitle = ""
+                        scheduleDate = ""
+                        scheduleTime = ""
+                    }
+                },
             )
         }
     }

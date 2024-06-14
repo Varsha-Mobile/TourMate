@@ -85,6 +85,6 @@ fun TambahJadwalScreen(
 
 @Preview
 @Composable
-private fun JTambahJadwalScreenPreview() {
+private fun TambahJadwalScreenPreview() {
     TambahJadwalScreen(navController = rememberNavController())
 }

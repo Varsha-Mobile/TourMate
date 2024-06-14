@@ -10,4 +10,7 @@ sealed class Screen ( val route: String) {
     // SUB MENU
 
     // AUTENTIKASI
+
+    //TambahJadwal
+    data object TambahJadwal : Screen("tambah_jadwal")
 }
